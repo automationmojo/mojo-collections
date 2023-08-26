@@ -14,7 +14,7 @@ CONTEXT_SINGLETON = None
 
 SINGLETON_LOCK = RLock()
 
-def ContextSinglton() -> Context:
+def ContextSingleton() -> Context:
     """
         Instantiates and gets a global instance of the :class:`Context` class.  The global
         :class:`Context` allows for easy sharing of a global context and configuration map.
