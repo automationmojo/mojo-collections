@@ -25,12 +25,12 @@ def ContextSingleton() -> Context:
     # If the singleton is already set, don't bother grabbing a lock
     # to set it.  The full path of the setting of the singleton will only
     # ever be taken once
-    if SUPER_FACTORY_SINGLETON is None:
+    if CONTEXT_SINGLETON is None:
         SINGLETON_LOCK.acquire()
         try:
-            if SUPER_FACTORY_SINGLETON is None:
-                SUPER_FACTORY_SINGLETON = Context()
+            if CONTEXT_SINGLETON is None:
+                CONTEXT_SINGLETON = Context()
         finally:
             SINGLETON_LOCK.release()
 
-    return SUPER_FACTORY_SINGLETON
+    return CONTEXT_SINGLETON

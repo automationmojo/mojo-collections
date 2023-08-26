@@ -320,13 +320,10 @@ class Context:
         style syntax to store and retrieve values and objects.  The :class:`Context` also provides
         a storage facility that can be replicated or sharded across a distributed environment.
     """
-    _instance = None
-    _store: dict = {}
 
-    def __new__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super(Context, cls).__new__(cls, *args, **kwargs)
-        return cls._instance
+    def __init__(self) -> None:
+        self._store: dict = {}
+        return
 
     def insert(self, path: str, obj: Any):
         """
