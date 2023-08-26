@@ -63,20 +63,20 @@ class ContextPaths(str, Enum):
     CONFIG_TOPOLOGY = "/configuration/topology"
     
     CONFIG_CREDENTIAL_NAMES = "/environment/credential/names"
-    CONFIG_CREDENTIAL_FILES = "/environment/credential/files"
-    CONFIG_CREDENTIAL_SEARCH_PATHS = "/environment/credential/search-paths"
+    CONFIG_CREDENTIAL_URIS = "/environment/credential/uris"
+    CONFIG_CREDENTIAL_SOURCES = "/environment/credential/sources"
 
     CONFIG_LANDSCAPE_NAMES = "/environment/landscape/names"
-    CONFIG_LANDSCAPE_FILES = "/environment/landscape/files"
-    CONFIG_LANDSCAPE_SEARCH_PATHS = "/environment/landscape/search-paths"
+    CONFIG_LANDSCAPE_URIS = "/environment/landscape/uris"
+    CONFIG_LANDSCAPE_SOURCES = "/environment/landscape/sources"
 
     CONFIG_RUNTIME_NAMES = "/environment/runtime/names"
-    CONFIG_RUNTIME_FILES = "/environment/runtime/files"
-    CONFIG_RUNTIME_SEARCH_PATHS = "/environment/runtime/search-paths"
+    CONFIG_RUNTIME_URIS = "/environment/runtime/uris"
+    CONFIG_RUNTIME_SOURCES = "/environment/runtime/sources"
 
     CONFIG_TOPOLOGY_NAMES = "/environment/topology/names"
-    CONFIG_TOPOLOGY_FILES = "/environment/topology/files"
-    CONFIG_TOPOLOGY_SEARCH_PATHS = "/environment/topology/search-paths"
+    CONFIG_TOPOLOGY_URIS = "/environment/topology/uris"
+    CONFIG_TOPOLOGY_SOURCES = "/environment/topology/sources"
 
     DATABASES = "/configuration/databases"
 
