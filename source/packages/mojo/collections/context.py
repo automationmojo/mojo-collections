@@ -392,11 +392,3 @@ class Context:
         self._insert(self._store, key, [key], val)
         return
 
-
-class ContextUser:
-    """
-        Serves as a base class for all classes that need a reference to the singleton context object.
-    """
-
-    context: Context = Context()
-
