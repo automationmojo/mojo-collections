@@ -22,8 +22,6 @@ from typing import Any, List, Optional
 import re
 
 from collections import ChainMap
-from enum import Enum
-
 
 from mojo.collections.mergemap import MergeMap
 
@@ -46,88 +44,6 @@ def validate_path_name(path: str) -> List[str]:
         parts = list(mobj)
 
     return parts
-
-
-class ContextPaths(str, Enum):
-    BEHAVIORS_LOG_CONFIGURATION = "/environment/behaviors/log-configuration-declarations"
-
-    BUILD_RELEASE = "/environment/build/release"
-    BUILD_BRANCH = "/environment/build/branch"
-    BUILD_FLAVOR = "/environment/build/flavor"
-    BUILD_NAME = "/environment/build/name"
-    BUILD_URL = "/environment/build/url"
-
-    CONFIG_CREDENTIALS = "/configuration/credentials"
-    CONFIG_LANDSCAPE = "/configuration/landscape"
-    CONFIG_RUNTIME = "/configuration/runtime"
-    CONFIG_TOPOLOGY = "/configuration/topology"
-    
-    CONFIG_CREDENTIAL_NAMES = "/environment/credential/names"
-    CONFIG_CREDENTIAL_URIS = "/environment/credential/uris"
-    CONFIG_CREDENTIAL_SOURCES = "/environment/credential/sources"
-
-    CONFIG_LANDSCAPE_NAMES = "/environment/landscape/names"
-    CONFIG_LANDSCAPE_URIS = "/environment/landscape/uris"
-    CONFIG_LANDSCAPE_SOURCES = "/environment/landscape/sources"
-
-    CONFIG_RUNTIME_NAMES = "/environment/runtime/names"
-    CONFIG_RUNTIME_URIS = "/environment/runtime/uris"
-    CONFIG_RUNTIME_SOURCES = "/environment/runtime/sources"
-
-    CONFIG_TOPOLOGY_NAMES = "/environment/topology/names"
-    CONFIG_TOPOLOGY_URIS = "/environment/topology/uris"
-    CONFIG_TOPOLOGY_SOURCES = "/environment/topology/sources"
-
-    DATABASES = "/configuration/databases"
-
-    DEBUG_BREAKPOINTS = "/configuration/breakpoints"
-    DEBUG_DEBUGGER = "/configuration/debugger"
-
-    DIR_RESULTS_RESOURCE_DEST = "/configuration/results-configuration/static-resource-dest-dir"
-    DIR_RESULTS_RESOURCE_SRC = "/configuration/results-configuration/static-resource-src-dir"
-
-    FILE_RESULTS_TEMPLATE = "/configuration/results-configuration/html-template"
-
-    LOGGING_LEVEL_CONSOLE = "/configuration/logging/levels/console"
-    LOGGING_LEVEL_LOGFILE = "/configuration/logging/levels/logfile"
-    LOGGING_LOGNAME = "/configuration/logging/logname"
-    LOGGING_BRANCHED = "/configuration/logging/branched"
-
-    PIPELINE_ID = "/environment/pipeline/id"
-    PIPELINE_NAME = "/environment/pipeline/name"
-    PIPELINE_INSTANCE = "/environment/pipeline/instance"
-
-    RUNTIME_HOME_DIRECTORY = "/environment/runtime/home"
-    RUNTIME_CONFIG_DIRECTORY = "/environment/runtime/config"
-
-    JOB_ID = "/environment/job/id"
-    JOB_INITIATOR = "/environment/job/initiator"
-    JOB_LABEL = "/environment/job/label"
-    JOB_NAME = "/environment/job/name"
-    JOB_OWNER = "/environment/job/owner"
-    JOB_TYPE = "/environment/job/type"
-
-    OUTPUT_DIRECTORY = "/environment/output_directory"
-
-    RESULT_PATH_FOR_CONSOLE = "/configuration/paths/results/console"
-    RESULT_PATH_FOR_TESTS = "/configuration/paths/results/tests"
-
-    RUNID = "/environment/runid"
-    STARTTIME = "/environment/starttime"
-
-    SKIPPED_DEVICES = "/configuration/skip-devices"
-
-    TEMPLATE_PATH_FOR_CONSOLE = "/configuration/paths-templates/results/console"
-    TEMPLATE_PATH_FOR_TESTS = "/configuration/paths-templates/results/tests"
-
-    TESTROOT = "/configuration/testroot"
-
-    TIMETRAVEL = "/configuration/timetravel"
-    TIMEPORTALS = "/configuration/timeportals"
-
-    UPNP_EXCLUDE_INTERFACES = "/configuration/networking/protocols/upnp/exclude_interfaces"
-    UPNP_LOGGED_EVENTS = "/configuration/networking/protocols/upnp/subscriptions/logged-events"
-
 
 class ContextCursor:
     """
