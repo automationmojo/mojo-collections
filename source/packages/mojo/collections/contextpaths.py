@@ -43,6 +43,9 @@ class ContextPaths(str, Enum):
     JOB_OWNER = "/environment/job/owner"
     JOB_TYPE = "/environment/job/type"
 
+    LOGFILE_DEBUG = "/environment/logfile_debug"
+    LOGFILE_OTHER = "/environment/logfile_other"
+
     PIPELINE_ID = "/environment/pipeline/id"
     PIPELINE_NAME = "/environment/pipeline/name"
     PIPELINE_INSTANCE = "/environment/pipeline/instance"
@@ -78,6 +81,8 @@ class ContextPaths(str, Enum):
     LOGGING_BRANCHED = "/configuration/runtime/logging/branched"
 
     RESULT_PATH_FOR_CONSOLE = "/configuration/runtime/paths/results/console"
+    RESULT_PATH_FOR_ORCHESTRATION = "/configuration/runtime/paths/results/orchestration"
+    RESULT_PATH_FOR_SERVICES = "/configuration/runtime/paths/results/service"
     RESULT_PATH_FOR_TESTS = "/configuration/runtime/paths/results/tests"
 
     SKIPPED_DEVICES = "/configuration/runtime/skip-devices"
