@@ -85,12 +85,14 @@ class ContextPaths(str, Enum):
 
     RESULT_PATH_FOR_CONSOLE = "/configuration/runtime/paths/results/console"
     RESULT_PATH_FOR_ORCHESTRATION = "/configuration/runtime/paths/results/orchestration"
-    RESULT_PATH_FOR_SERVICES = "/configuration/runtime/paths/results/service"
+    RESULT_PATH_FOR_SERVICES = "/configuration/runtime/paths/results/services"
     RESULT_PATH_FOR_TESTS = "/configuration/runtime/paths/results/tests"
 
     SKIPPED_DEVICES = "/configuration/runtime/skip-devices"
 
     TEMPLATE_PATH_FOR_CONSOLE = "/configuration/runtime/paths-templates/results/console"
+    TEMPLATE_PATH_FOR_ORCHESTRATION = "/configuration/runtime/paths-templates/results/orchestration"
+    TEMPLATE_PATH_FOR_SERVICES = "/configuration/runtime/paths-templates/results/services"
     TEMPLATE_PATH_FOR_TESTS = "/configuration/runtime/paths-templates/results/tests"
 
     TESTROOT = "/configuration/runtime/testroot"
