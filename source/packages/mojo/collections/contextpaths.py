@@ -69,6 +69,9 @@ class ContextPaths(str, Enum):
     DEBUG_BREAKPOINTS = "/configuration/runtime/breakpoints"
     DEBUG_DEBUGGER = "/configuration/runtime/debugger"
 
+    DIAGNOSTICS_PRERUN = "/configuration/diagnostics/prerun-diagnostic"
+    DIAGNOSTICS_POSTRUN = "/configuration/diagnostics/postrun-diagnostic"
+
     DIR_RESULTS_RESOURCE_DEST = "/configuration/runtime/results-configuration/static-resource-dest-dir"
     DIR_RESULTS_RESOURCE_SRC = "/configuration/runtime/results-configuration/static-resource-src-dir"
 
