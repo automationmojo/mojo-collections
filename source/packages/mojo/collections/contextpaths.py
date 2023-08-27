@@ -23,18 +23,22 @@ class ContextPaths(str, Enum):
     CONFIG_CREDENTIAL_NAMES = "/environment/credential/names"
     CONFIG_CREDENTIAL_URIS = "/environment/credential/uris"
     CONFIG_CREDENTIAL_SOURCES = "/environment/credential/sources"
+    CONFIG_CREDENTIAL_FILES = "/environment/credential/files"
 
     CONFIG_LANDSCAPE_NAMES = "/environment/landscape/names"
     CONFIG_LANDSCAPE_URIS = "/environment/landscape/uris"
     CONFIG_LANDSCAPE_SOURCES = "/environment/landscape/sources"
+    CONFIG_LANDSCAPE_FILES = "/environment/landscape/files"
 
     CONFIG_RUNTIME_NAMES = "/environment/runtime/names"
     CONFIG_RUNTIME_URIS = "/environment/runtime/uris"
     CONFIG_RUNTIME_SOURCES = "/environment/runtime/sources"
+    CONFIG_RUNTIME_FILES = "/environment/runtime/files"
 
     CONFIG_TOPOLOGY_NAMES = "/environment/topology/names"
     CONFIG_TOPOLOGY_URIS = "/environment/topology/uris"
     CONFIG_TOPOLOGY_SOURCES = "/environment/topology/sources"
+    CONFIG_TOPOLOGY_FILES = "/environment/topology/files"
 
     JOB_ID = "/environment/job/id"
     JOB_INITIATOR = "/environment/job/initiator"
