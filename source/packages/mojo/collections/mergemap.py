@@ -177,7 +177,12 @@ class MergeMap(MutableMapping):
         return nm
 
     def __setitem__(self, key, value):
+
+        if len(self.maps) == 0:
+            self.maps.append({})
+
         self.maps[0][key] = value
+
         return
 
 
