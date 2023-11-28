@@ -58,6 +58,7 @@ class ContextPaths(str, Enum):
     RUNTIME_CONFIG_DIRECTORY = "/environment/runtime/config"
 
     OUTPUT_DIRECTORY = "/environment/output_directory"
+    OUTPUT_DIRECTORY_IS_SHARED = "/environment/output_directory_is_shared"
 
     RUNID = "/environment/runid"
     STARTTIME = "/environment/starttime"
