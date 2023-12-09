@@ -46,6 +46,7 @@ class ContextPaths(str, Enum):
     JOB_NAME = "/environment/job/name"
     JOB_OWNER = "/environment/job/owner"
     JOB_TYPE = "/environment/job/type"
+    JOB_VENUE = "/environment/job/venue"
 
     LOGFILE_DEBUG = "/environment/logfile_debug"
     LOGFILE_OTHER = "/environment/logfile_other"
