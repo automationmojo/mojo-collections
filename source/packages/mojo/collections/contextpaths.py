@@ -40,6 +40,7 @@ class ContextPaths(str, Enum):
     CONFIG_TOPOLOGY_SOURCES = "/environment/topology/sources"
     CONFIG_TOPOLOGY_FILES = "/environment/topology/files"
 
+    JOB_INFO = "/environment/job"
     JOB_ID = "/environment/job/id"
     JOB_INITIATOR = "/environment/job/initiator"
     JOB_LABEL = "/environment/job/label"
@@ -51,6 +52,7 @@ class ContextPaths(str, Enum):
     LOGFILE_DEBUG = "/environment/logfile_debug"
     LOGFILE_OTHER = "/environment/logfile_other"
 
+    PIPELINE_INFO = "/environment/pipeline"
     PIPELINE_ID = "/environment/pipeline/id"
     PIPELINE_NAME = "/environment/pipeline/name"
     PIPELINE_INSTANCE = "/environment/pipeline/instance"
