@@ -3,9 +3,9 @@ Automation Mojo Collections Package
 ===================================
 A package that contains specialized collections used for automation and configuration.
 
-=========================
-Features of this Template
-=========================
+===========================
+Features of this Repository
+===========================
 * Machine Setup
 * Virtual Environment Setup (Poetry)
 * PyPi Publishing

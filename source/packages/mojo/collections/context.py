@@ -58,6 +58,25 @@ class ContextCursor:
     def value(self):
         return self._storeref
 
+    def exists(self, path: str) -> bool:
+        """
+            Checks to see if a value exists at the path specified.
+
+            :param path: Path where the object is to be inserted
+
+            :returns: A boolean indicating if the specified path contains a value
+        """
+
+        if isinstance(path, (list, tuple)):
+            path_parts = path
+            path = "/%s" %  "/".join(path_parts)
+        else:
+            path_parts = validate_path_name(path.rstrip("/"))
+        
+        found = self._exists(self._store_ref, path, path_parts)
+
+        return found
+
     def fill_template(self, template: str) -> str:
         """
             Method that fills the provided template using the data items stored at the
@@ -113,11 +132,12 @@ class ContextCursor:
 
         return found_node
 
-    def remove(self, path: str, raise_error=False) -> Any:
+    def remove(self, path: str, raise_error=False, ignore_missing: bool = False) -> Any:
         """
             Remove an object at the specified path
 
             :param path: Path where the desired object is located.
+            :param ignore_missing: Dont raise an exception if the path provided does not exist
 
             :returns: The being removed from the specified path.
 
@@ -132,12 +152,28 @@ class ContextCursor:
             else:
                 path_parts = validate_path_name(path.rstrip("/"))
 
-            found_node = self._remove(self._storeref, path, path_parts)
+            found_node = self._remove(self._storeref, path, path_parts, ignore_missing=ignore_missing)
         except LookupError as luerr:
             if raise_error:
                 raise
 
         return found_node
+
+    def _exists(self, dref: dict, path: str, path_parts: List[str]) -> bool:
+
+        found = False
+
+        if len(path_parts) > 0:
+            leaf_name = path_parts[0]
+            if leaf_name in dref:
+                found_node = dref[leaf_name]
+                if len(path_parts) > 1:
+                    if isinstance(found_node, (dict, ChainMap, MergeMap)):
+                        found = self._exists(found_node, path, path_parts[1:])
+                else:
+                    found = True
+
+        return found
 
     def _insert(self, dref: dict, path: str, path_parts: List[str], obj: Any):
 
@@ -189,7 +225,7 @@ class ContextCursor:
 
         return found_node
 
-    def _remove(self, dref: dict, path: str, path_parts: List[str]) -> Any:
+    def _remove(self, dref: dict, path: str, path_parts: List[str], ignore_missing: bool = False) -> Any:
 
         found_node = None
 
@@ -200,11 +236,11 @@ class ContextCursor:
                 if len(path_parts) > 1:
                     if isinstance(found_node, (dict, ChainMap, MergeMap)):
                         found_node = self._remove(found_node, path, path_parts[1:])
-                    else:
+                    elif not ignore_missing:
                         raise LookupError("Context remove failure for path=%s" % path)
                 else:
                     del dref[leaf_name]
-            else:
+            elif not ignore_missing:
                 raise LookupError("Context remove failure for path=%s" % path)
         else:
             raise ValueError("Invalid path=%s" % path)
@@ -240,6 +276,25 @@ class Context:
     def __init__(self) -> None:
         self._store: dict = {}
         return
+
+    def exists(self, path: str) -> bool:
+        """
+            Checks to see if a value exists at the path specified.
+
+            :param path: Path where the object is to be inserted
+
+            :returns: A boolean indicating if the specified path contains a value
+        """
+
+        if isinstance(path, (list, tuple)):
+            path_parts = path
+            path = "/%s" %  "/".join(path_parts)
+        else:
+            path_parts = validate_path_name(path.rstrip("/"))
+        
+        found = self._exists(self._store, path, path_parts)
+
+        return found
 
     def insert(self, path: str, obj: Any):
         """
@@ -286,11 +341,12 @@ class Context:
 
         return found_node
 
-    def remove(self, path: str) -> Any:
+    def remove(self, path: str, ignore_missing: bool = False) -> Any:
         """
             Remove an object at the specified path
 
             :param path: Path where the desired object is located.
+            :param ignore_missing: Dont raise an exception if the path provided does not exist
 
             :returns: The being removed from the specified path.
 
@@ -304,9 +360,25 @@ class Context:
         else:
             path_parts = validate_path_name(path.rstrip("/"))
 
-        found_node = self._remove(self._store, path, path_parts)
+        found_node = self._remove(self._store, path, path_parts, ignore_missing=ignore_missing)
 
         return found_node
+
+    def _exists(self, dref: dict, path: str, path_parts: List[str]) -> bool:
+
+        found = False
+
+        if len(path_parts) > 0:
+            leaf_name = path_parts[0]
+            if leaf_name in dref:
+                found_node = dref[leaf_name]
+                if len(path_parts) > 1:
+                    if isinstance(found_node, (dict, ChainMap, MergeMap)):
+                        found = self._exists(found_node, path, path_parts[1:])
+                else:
+                    found = True
+
+        return found
 
     def _insert(self, dref: dict, path: str, path_parts: List[str], obj: Any) -> Any:
 
@@ -358,7 +430,7 @@ class Context:
 
         return found_node
 
-    def _remove(self, dref: dict, path: str, path_parts: List[str]) -> Any:
+    def _remove(self, dref: dict, path: str, path_parts: List[str], ignore_missing: bool = False) -> Any:
 
         found_node = None
 
@@ -369,11 +441,11 @@ class Context:
                 if len(path_parts) > 1:
                     if isinstance(found_node, (dict, ChainMap, MergeMap)):
                         found_node = self._remove(found_node, path, path_parts[1:])
-                    else:
+                    elif not ignore_missing:
                         raise LookupError("Context remove failure for path=%s" % path)
                 else:
                     del dref[leaf_name]
-            else:
+            elif not ignore_missing:
                 raise LookupError("Context remove failure for path=%s" % path)
         else:
             raise ValueError("Invalid path=%s" % path)

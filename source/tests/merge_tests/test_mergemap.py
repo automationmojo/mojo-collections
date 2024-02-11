@@ -50,7 +50,7 @@ class TestMergeMap(unittest.TestCase):
         ma = mm["a"]
         maa = ma["a"]
 
-        self.assert_(isinstance(maa, MergeMap), "The map_two value should be the priority value.")
+        self.assertTrue(isinstance(maa, MergeMap), "The map_two value should be the priority value.")
         return
     
     def test_value_shadows_map(self):
@@ -58,7 +58,7 @@ class TestMergeMap(unittest.TestCase):
         mm = MergeMap(self.map_zero, self.map_one, self.map_two)
         ma = mm["a"]["a"]
 
-        self.assert_(ma == "a", "The map_zero value should be the priority value.")
+        self.assertTrue(ma == "a", "The map_zero value should be the priority value.")
         return
 
 
