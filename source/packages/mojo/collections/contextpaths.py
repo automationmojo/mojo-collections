@@ -57,8 +57,10 @@ class ContextPaths(str, Enum):
     PIPELINE_NAME = "/environment/pipeline/name"
     PIPELINE_INSTANCE = "/environment/pipeline/instance"
 
+    RUNTIME_NAME = "/environment/runtime/name"
     RUNTIME_HOME_DIRECTORY = "/environment/runtime/home"
     RUNTIME_CONFIG_DIRECTORY = "/environment/runtime/config"
+    RUNTIME_CONFIGURED_FACTORY_MODULES = "/environment/runtime/factory-modules"
 
     OUTPUT_DIRECTORY = "/environment/output_directory"
     OUTPUT_DIRECTORY_IS_SHARED = "/environment/output_directory_is_shared"
