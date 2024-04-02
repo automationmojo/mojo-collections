@@ -129,7 +129,19 @@ class MergeMap(MutableMapping):
             self.__missing__(key)  # support subclasses that define __missing__
 
         if isinstance(merge_val, list):
-            merge_val = merge_val[0]
+            all_lists = True
+            for nxtval in merge_val:
+                if not isinstance(nxtval, list):
+                    all_lists = False
+                    break
+
+            if all_lists:
+                merged_lists = []
+                for nxtlist in merge_val:
+                    merged_lists.extend(nxtlist)
+                merge_val = merged_lists
+            else:
+                merge_val = merge_val[0]
 
         return merge_val         
 
