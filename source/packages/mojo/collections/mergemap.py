@@ -19,6 +19,7 @@ __license__ = "MIT"
 
 from typing import Iterable, List, Optional, MutableMapping
 
+import json
 
 import reprlib
 
@@ -135,10 +136,28 @@ class MergeMap(MutableMapping):
                     all_lists = False
                     break
 
-            if all_lists:
+            if all_lists and len(merge_val) > 1:
+                merged_compare = []
                 merged_lists = []
+
                 for nxtlist in merge_val:
+                    for nxtitem in nxtlist:
+                        nxtcmp = None
+
+                        if isinstance(nxtitem, dict):
+                            nxtcmp = json.dumps(nxtitem, sort_keys=True)
+                        elif isinstance(nxtitem, list):
+                            nxtitem.sort()
+                            nxtcmp = json.dumps(nxtitem, sort_keys=True)
+                        else:
+                            nxtcmp = nxtitem
+
+                        if nxtcmp not in merged_compare:
+                            merged_compare.append(nxtcmp)
+                            merged_lists.append(nxtitem)
+
                     merged_lists.extend(nxtlist)
+                
                 merge_val = merged_lists
             else:
                 merge_val = merge_val[0]
