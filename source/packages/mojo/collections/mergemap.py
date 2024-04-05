@@ -155,8 +155,6 @@ class MergeMap(MutableMapping):
                         if nxtcmp not in merged_compare:
                             merged_compare.append(nxtcmp)
                             merged_lists.append(nxtitem)
-
-                    merged_lists.extend(nxtlist)
                 
                 merge_val = merged_lists
             else:
