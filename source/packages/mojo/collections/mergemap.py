@@ -107,56 +107,56 @@ class MergeMap(MutableMapping):
 
     def __getitem__(self, key: str):
 
-        merge_val = None
+        rtnval = None
 
-        for mapping in self.maps:
-            if key in mapping:
-                nm = mapping[key]          # can't use 'key in mapping' with defaultdict
-                if merge_val is None:
-                    if isinstance(nm, dict):
-                        merge_val = MergeMap(nm)
-                    else:
-                        merge_val = [nm]
-                elif isinstance(merge_val, list):
-                    merge_val.append(nm)
+        candidates = []
+
+        for nxtmap in self.maps:
+            if key in nxtmap:
+                mval = nxtmap[key]
+                candidates.append(mval)
+
+        if len(candidates) == 0:
+            self.__missing__(key)
+        elif len(candidates) == 1:
+            rtnval = candidates[0]
+        else:
+
+            # Check to see if the mapping values at this level are the same type and can be merged
+            common_type = type(candidates[0])
+
+            if common_type == list or common_type == tuple:
+                has_common_type = True
+
+                for nxtitem in candidates:
+                    nxttype = type(nxtitem)
+                    if nxttype != common_type:
+                        has_common_type = False
+                        break
+
+                if has_common_type:
+                    # If we made it here, we can merge
+                    cmplist = []
+                    merged_list = []
+                    for nxtcand in candidates:
+                        for nxtval in nxtcand:
+                            cmpval = nxtval
+                            if isinstance(cmpval, dict):
+                                cmpval = json.dumps(nxtval, sort_keys=True)
+                            elif isinstance(cmpval, list) or isinstance(nxtval, tuple):
+                                cmpval = json.dumps(cmpval.sort())
+                            
+                            if cmpval not in cmplist:
+                                cmplist.append(cmpval)
+                                merged_list.append(nxtval)
+
+                    rtnval = merged_list
                 else:
-                    merge_val.maps.append(nm)
-
-        if merge_val is None:
-            self.__missing__(key)  # support subclasses that define __missing__
-
-        if isinstance(merge_val, list):
-            all_lists = True
-            for nxtval in merge_val:
-                if not isinstance(nxtval, list):
-                    all_lists = False
-                    break
-
-            if all_lists and len(merge_val) > 1:
-                merged_compare = []
-                merged_lists = []
-
-                for nxtlist in merge_val:
-                    for nxtitem in nxtlist:
-                        nxtcmp = None
-
-                        if isinstance(nxtitem, dict):
-                            nxtcmp = json.dumps(nxtitem, sort_keys=True)
-                        elif isinstance(nxtitem, list):
-                            nxtitem.sort()
-                            nxtcmp = json.dumps(nxtitem, sort_keys=True)
-                        else:
-                            nxtcmp = nxtitem
-
-                        if nxtcmp not in merged_compare:
-                            merged_compare.append(nxtcmp)
-                            merged_lists.append(nxtitem)
-                
-                merge_val = merged_lists
+                    rtnval = candidates[0]
             else:
-                merge_val = merge_val[0]
+                rtnval = candidates[0]
 
-        return merge_val         
+        return rtnval         
 
     def __iter__(self):
         mks = self.keys()
