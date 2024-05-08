@@ -59,6 +59,26 @@ class TestMergeMap(unittest.TestCase):
         ]
     }
 
+    path_map_with_list_a = {
+        "root": {
+            "merge-list": [
+                "a",
+                "b",
+                "c"
+            ]
+        }
+    }
+
+    path_map_with_list_b = {
+        "root": {
+            "merge-list": [
+                "c",
+                "d",
+                "e"
+            ]
+        }
+    }
+
     def test_map_shadows_value(self):
 
         mm = MergeMap(self.map_two, self.map_one, self.map_zero)
@@ -79,9 +99,10 @@ class TestMergeMap(unittest.TestCase):
     def test_value_shadows_map(self):
 
         mm = MergeMap(self.map_zero, self.map_one, self.map_two)
-        ma = mm["a"]["a"]
+        ma = mm["a"]
+        maa = ma["a"]
 
-        self.assertTrue(ma == "a", "The map_zero value should be the priority value.")
+        self.assertTrue(maa == "a", "The map_zero value should be the priority value.")
         return
 
     def test_list_merge(self):
@@ -93,6 +114,7 @@ class TestMergeMap(unittest.TestCase):
         self.assertEqual(len(mrglist), 5)
 
         return
+
 
 if __name__ == '__main__':
     unittest.main()
