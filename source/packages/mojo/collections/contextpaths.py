@@ -66,7 +66,7 @@ class ContextPaths(str, Enum):
     RUNTIME_HOME_DIRECTORY = "/environment/runtime/home"
     RUNTIME_CONFIG_DIRECTORY = "/environment/runtime/config"
     RUNTIME_CONFIGURED_FACTORY_MODULES = "/environment/runtime/factory-modules"
-
+    
     OUTPUT_DIRECTORY = "/environment/output_directory"
     OUTPUT_DIRECTORY_IS_SHARED = "/environment/output_directory_is_shared"
 
@@ -78,6 +78,8 @@ class ContextPaths(str, Enum):
     CONFIG_LANDSCAPE = "/configuration/landscape"
     CONFIG_RUNTIME = "/configuration/runtime"
     CONFIG_TOPOLOGY = "/configuration/topology"
+    
+    CONFIG_STORAGE_URI = "/configuration/storage-uri"
 
     DATABASES = "/configuration/runtime/databases"
 
@@ -118,3 +120,6 @@ class ContextPaths(str, Enum):
 
     UPNP_EXCLUDE_INTERFACES = "/configuration/runtime/networking/protocols/upnp/exclude_interfaces"
     UPNP_LOGGED_EVENTS = "/configuration/runtime/networking/protocols/upnp/subscriptions/logged-events"
+
+    VALIDATION_TOLERANCES = "/configuration/runtime/validation/tolerances"
+
