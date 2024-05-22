@@ -70,6 +70,8 @@ class ContextPaths(str, Enum):
     OUTPUT_DIRECTORY = "/environment/output_directory"
     OUTPUT_DIRECTORY_IS_SHARED = "/environment/output_directory_is_shared"
 
+    SHARED_STORE_DIRECTORY = "/environment/shared_store"
+
     RUNID = "/environment/runid"
     STARTTIME = "/environment/starttime"
 
