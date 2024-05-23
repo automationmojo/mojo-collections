@@ -104,6 +104,7 @@ class ContextPaths(str, Enum):
     LOGGING_LOGNAME = "/configuration/runtime/logging/logname"
     LOGGING_BRANCHED = "/configuration/runtime/logging/branched"
 
+    RESULT_PATH_FOR_CURRENT = "/configuration/runtime/paths/results/current"
     RESULT_PATH_FOR_CONSOLE = "/configuration/runtime/paths/results/console"
     RESULT_PATH_FOR_ORCHESTRATION = "/configuration/runtime/paths/results/orchestration"
     RESULT_PATH_FOR_SERVICES = "/configuration/runtime/paths/results/services"
