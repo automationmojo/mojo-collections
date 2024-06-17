@@ -12,7 +12,7 @@ __copyright__ = "Copyright 2023, Myron W Walker"
 __credits__ = []
 
 
-from typing import Any
+from typing import Any, Optional
 
 
 class CaseInsensitiveStringDict(dict):
@@ -122,13 +122,17 @@ class CaseInsensitiveStringDict(dict):
         """
         return super(CaseInsensitiveStringDict, self).setdefault(CaseInsensitiveStringDict.key_to_lower(key), value, *args, **kwargs)
 
-    def update(self, dobj: dict = {}, **kwargs): # pylint: disable=dangerous-default-value
+    def update(self, dobj: Optional[dict] = None, **kwargs): # pylint: disable=dangerous-default-value
         """
             Overrides the :method:`update` method providing a key conversion in order
             to perform a case insensative dictionary update.
         """
-        super(CaseInsensitiveStringDict, self).update(self.__class__(dobj))
+
+        if dobj is not None:
+            super(CaseInsensitiveStringDict, self).update(self.__class__(dobj))
+
         super(CaseInsensitiveStringDict, self).update(self.__class__(**kwargs))
+
         return
 
     def _convert_keys(self):
