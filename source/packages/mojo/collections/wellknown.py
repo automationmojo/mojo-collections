@@ -11,13 +11,12 @@ __copyright__ = "Copyright 2023, Myron W Walker"
 __credits__ = []
 
 
-from threading import RLock
-
 from mojo.collections.context import Context
+from mojo.collections.singletons import SINGLETON_LOCK
+
 
 CONTEXT_SINGLETON = None
 
-SINGLETON_LOCK = RLock()
 
 def ContextSingleton() -> Context:
     """
@@ -30,12 +29,11 @@ def ContextSingleton() -> Context:
     # If the singleton is already set, don't bother grabbing a lock
     # to set it.  The full path of the setting of the singleton will only
     # ever be taken once
-    if CONTEXT_SINGLETON is None:
-        SINGLETON_LOCK.acquire()
-        try:
-            if CONTEXT_SINGLETON is None:
-                CONTEXT_SINGLETON = Context()
-        finally:
-            SINGLETON_LOCK.release()
+    SINGLETON_LOCK.acquire()
+    try:
+        if CONTEXT_SINGLETON is None:
+            CONTEXT_SINGLETON = Context()
+    finally:
+        SINGLETON_LOCK.release()
 
     return CONTEXT_SINGLETON
