@@ -1,4 +1,4 @@
 
-from threading import Lock
+from threading import RLock
 
-SINGLETON_LOCK = Lock()
+SINGLETON_LOCK = RLock()
