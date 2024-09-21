@@ -37,7 +37,10 @@ class DictMap:
         must also begin with '/'.
 
         Examples:
-            /a/b/c 
+            dm.insert("/a/b/c", "some value")
+
+            val = dm.lookup("/a/b/c", default="default value")
+         
     """
 
     def __init__(self, store: Dict[str, Any], path: Optional[str] = "/", root_ref: Optional[ReferenceType["DictMap"]] = None):
